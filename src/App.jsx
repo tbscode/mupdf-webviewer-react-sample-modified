@@ -8,7 +8,11 @@ function App() {
   useEffect(() => {
     if (initializedRef.current) return
     initializedRef.current = true
-    initMuPDFWebViewer('#viewer', `${location.origin}/sample.pdf`)
+
+    const urlParams = new URLSearchParams(window.location.search)
+    const pdfPath = urlParams.get('pdf') || 'sample.pdf'
+
+    initMuPDFWebViewer('#viewer', `${location.origin}/${pdfPath}`)
   }, [])
 
   return (
